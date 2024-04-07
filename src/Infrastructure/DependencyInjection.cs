@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using static Infrastructure.Data.ApplicationDbContextInitializerExtension;
 
 namespace Infrastructure;
 
@@ -23,6 +24,7 @@ public static class DependencyInjection
 				.AddInterceptors(auditableInterceptor);
 		});
 		services.AddScoped<AuditableEntityInterceptor>();
+		services.AddScoped<ApplicationDbContextInitializer>();
 
 		return services;
 	}

@@ -12,6 +12,7 @@ public static class DependencyInjection
 	{
 		services.AddTransient<ApplicationLogger>();
 		services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+		services.AddHealthChecks();
 		MapsterConfiguration.ConfigureMappings();
 
 		return services;
