@@ -23,7 +23,6 @@
 
   <ItemGroup>
     <Folder Include="Categories\Commands\" />
-    <Folder Include="Categories\Queries\" />
     <Folder Include="Customers\Commands\" />
     <Folder Include="Customers\Queries\" />
   </ItemGroup>

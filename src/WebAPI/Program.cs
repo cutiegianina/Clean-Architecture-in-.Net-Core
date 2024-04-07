@@ -1,8 +1,7 @@
-using Serilog;
-using Serilog.Events;
 using Infrastructure;
 using Application;
 using WebAPI.Loggers;
+using Application.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,7 +34,11 @@ if (!app.Environment.IsDevelopment())
 }
 
 
+app.UseApplicationLogger();
+
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

@@ -11,5 +11,8 @@ public static class DependencyInjection
 			.ReadFrom.Services(services)
 			.Enrich.FromLogContext()
 			.WriteTo.Console()
-			.WriteTo.File(@"C:\Logs\ApplicationLogs.txt", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: LogEventLevel.Information));
+			.WriteTo.File(
+				@"C:\Logs\ApplicationLogs.txt",
+				rollingInterval: RollingInterval.Day,
+				restrictedToMinimumLevel: LogEventLevel.Information));
 }

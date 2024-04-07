@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Entities.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -20,6 +21,6 @@ public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
 			.Property(p => p.Id)
 			.HasConversion(
 				id => id.Value,
-				value => new Domain.Entities.ValueObjects.CustomerId(value));
+				value => new CustomerId(value));
 	}
 }
