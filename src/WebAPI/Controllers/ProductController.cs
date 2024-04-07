@@ -1,10 +1,8 @@
-﻿using Application.Common.Interfaces.Data;
-using Application.Dtos;
+﻿using Application.Dtos;
 using Application.Products.Commands;
 using Application.Products.Queries;
 using Domain.Entities;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;

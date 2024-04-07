@@ -1,8 +1,8 @@
 ﻿using Application.Common.Interfaces.Data;
 using Application.Dtos;
 using Domain.Entities.ValueObjects;
+using Mapster;
 using MediatR;
-using System;
 
 namespace Application.Products.Queries;
 
@@ -22,13 +22,6 @@ internal sealed class GetProductByIdQueryHandler : IRequestHandler<GetProductByI
 		if (product is null)
 			return await Task.FromResult(new ProductDto());
 
-		return new ProductDto()
-		{
-			Id = product.Id.Value,
-			Description = product.Description,
-			Price = product.Price,
-			StockQuantity = product.StockQuantity,
-			CategoryId = product.CategoryId.Value
-		};
+		return product.Adapt<ProductDto>();
 	}
 }

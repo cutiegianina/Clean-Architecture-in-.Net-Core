@@ -1,12 +1,8 @@
 ﻿using Application.Common.Interfaces.Data;
 using Application.Dtos;
+using Mapster;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Products.Queries
 {
@@ -21,22 +17,12 @@ namespace Application.Products.Queries
 
 		public async Task<List<ProductDto>> Handle(GetProductQuery request, CancellationToken cancellationToken)
 		{
-			var productResponse = await _context.Product.ToListAsync(cancellationToken);
+			var products = await _context.Product.ToListAsync(cancellationToken);
 
-			if (productResponse is null)
+			if (products is null)
 				return await Task.FromResult(new List<ProductDto>());
 
-			var products = productResponse.Select(product => new ProductDto()
-			{
-				Id = product.Id.Value,
-				Name = product.Name,
-				Description = product.Description,
-				Price = product.Price,
-				StockQuantity = product.StockQuantity,
-				CategoryId = product.CategoryId.Value
-			}).ToList();
-
-			return products;
+			return products.Adapt<List<ProductDto>>();
 		}
 	}
 }
