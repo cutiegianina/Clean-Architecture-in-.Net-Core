@@ -183,3 +183,5 @@ C:\Richard Puig\Pamakyabe\src\WebAPI\bin\Debug\net7.0\MediatR.dll
 C:\Richard Puig\Pamakyabe\src\WebAPI\bin\Debug\net7.0\MediatR.Contracts.dll
 C:\Richard Puig\Pamakyabe\src\WebAPI\bin\Debug\net7.0\MediatR.Extensions.Autofac.DependencyInjection.dll
 C:\Richard Puig\Pamakyabe\src\WebAPI\bin\Debug\net7.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Richard Puig\Pamakyabe\src\WebAPI\bin\Debug\net7.0\Mapster.dll
+C:\Richard Puig\Pamakyabe\src\WebAPI\bin\Debug\net7.0\Mapster.Core.dll

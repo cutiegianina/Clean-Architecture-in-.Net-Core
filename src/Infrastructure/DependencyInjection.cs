@@ -1,7 +1,7 @@
-﻿using Application.Data;
-using Infrastructure.Context;
+﻿using Application.Common.Interfaces.Data;
+using Infrastructure.Data.Context;
+using Infrastructure.Data.Interceptors;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -10,15 +10,19 @@ namespace Infrastructure;
 
 public static class DependencyInjection
 {
-	public static IServiceCollection AddInfrastructure(
+	public static IServiceCollection AddInfrastructureServices(
 		this IServiceCollection services,
 		IConfiguration configuration)
 	{
 		string? connectionString = configuration.GetConnectionString("ApplicationDbContext");
 		services.AddDbContext<IApplicationDbContext, ApplicationDbContext>((sp, optionsBuilder) =>
 		{
-			optionsBuilder.UseSqlServer(connectionString);
+			var auditableInterceptor = sp.GetRequiredService<AuditableEntityInterceptor>();
+			optionsBuilder.UseSqlServer(connectionString,
+					o => o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery))
+				.AddInterceptors(auditableInterceptor);
 		});
+		services.AddScoped<AuditableEntityInterceptor>();
 
 		return services;
 	}

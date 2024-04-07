@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "guHH8bcUhu96FA6x+2zZGS8wNWOI3UqtY7gDL7PIuFRmKWNOTa5JrRNRxL46XdGaemKxgVyByWs8ieTb+5PDtA==",
+  "dgSpecHash": "8F9LqGr1oZhnkdYTe22oUma1+e4rdxveGayfSeggIbYdYqVHhc3ZNz231SO0YitXjINPgb9l4zmy5wl5C56ONQ==",
   "success": true,
   "projectFilePath": "C:\\Richard Puig\\Pamakyabe\\src\\Application\\Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\richard.puig\\.nuget\\packages\\autofac\\8.0.0\\autofac.8.0.0.nupkg.sha512",
+    "C:\\Users\\richard.puig\\.nuget\\packages\\mapster\\7.4.0\\mapster.7.4.0.nupkg.sha512",
+    "C:\\Users\\richard.puig\\.nuget\\packages\\mapster.core\\1.2.1\\mapster.core.1.2.1.nupkg.sha512",
     "C:\\Users\\richard.puig\\.nuget\\packages\\mediatr\\12.2.0\\mediatr.12.2.0.nupkg.sha512",
     "C:\\Users\\richard.puig\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\richard.puig\\.nuget\\packages\\mediatr.extensions.autofac.dependencyinjection\\12.0.0\\mediatr.extensions.autofac.dependencyinjection.12.0.0.nupkg.sha512",

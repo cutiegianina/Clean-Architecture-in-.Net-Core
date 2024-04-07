@@ -1,23 +1,22 @@
 using Serilog;
 using Serilog.Events;
 using Infrastructure;
+using Application;
+using WebAPI.Loggers;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Host.UseSerilog((context, services, configuration) => configuration
-	.ReadFrom.Configuration(context.Configuration)
-	.ReadFrom.Services(services)
-	.Enrich.FromLogContext()
-	.WriteTo.Console()
-	.WriteTo.File("logs/myapp.txt", rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: LogEventLevel.Information));
+builder.Host.AddApplicationLogs();
 
 // Add services to the container.
 var configuration = builder.Configuration;
+var services = builder.Services;
 
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddInfrastructure(configuration);
+services.AddControllers();
+services.AddEndpointsApiExplorer();
+services.AddSwaggerGen();
+services.AddInfrastructureServices(configuration);
+services.AddApplicationServices();
 
 var app = builder.Build();
 
