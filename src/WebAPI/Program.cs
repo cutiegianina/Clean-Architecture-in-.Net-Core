@@ -2,6 +2,7 @@ using Infrastructure;
 using Application;
 using WebAPI.Loggers;
 using Application.Middlewares;
+using Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+	await app.InitializeDatabaseAsync();
 	app.UseSwagger();
 	app.UseSwaggerUI();
 }
@@ -33,10 +35,11 @@ if (!app.Environment.IsDevelopment())
 	app.UseHsts();
 }
 
+app.UseHttpsRedirection();
+
+app.UseHealthChecks("/health");
 
 app.UseApplicationLogger();
-
-app.UseHttpsRedirection();
 
 app.UseAuthentication();
 
