@@ -87,7 +87,7 @@ public class ApplicationDbContextInitializer
 
 		// Authenticating user
 		var admin = await _userManager.FindByEmailAsync(administrator.Email!);
-		string inputPassword = string.Empty;
+		string inputPassword = string.Empty; // Assign value from inputted password
 		bool isAuthenticated = await _userManager.CheckPasswordAsync(admin!, inputPassword);
 	}
 }
