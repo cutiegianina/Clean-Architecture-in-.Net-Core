@@ -1,11 +1,13 @@
 ﻿using Application.Common.Interfaces.Data;
+using Infrastructure.Data;
 using Infrastructure.Data.Context;
 using Infrastructure.Data.Interceptors;
+using Infrastructure.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using static Infrastructure.Data.ApplicationDbContextInitializerExtension;
 
 namespace Infrastructure;
 
@@ -23,8 +25,18 @@ public static class DependencyInjection
 					o => o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery))
 				.AddInterceptors(auditableInterceptor);
 		});
+		services.AddScoped<ApplicationDbContext>();
 		services.AddScoped<AuditableEntityInterceptor>();
 		services.AddScoped<ApplicationDbContextInitializer>();
+
+		services
+			.AddIdentityCore<ApplicationUser>()
+			.AddRoles<IdentityRole>()
+			.AddEntityFrameworkStores<ApplicationDbContext>()
+			.AddDefaultTokenProviders();
+
+		services.AddDataProtection();
+
 
 		return services;
 	}

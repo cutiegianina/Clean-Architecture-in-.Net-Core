@@ -25,7 +25,10 @@
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ADMIN_USERNAME": "richard123",
+        "ADMIN_PASSWORD": "puig123",
+        "ADMIN_EMAIL": "richard.puig@veritaspay.com"
       }
     },
     "Docker": {

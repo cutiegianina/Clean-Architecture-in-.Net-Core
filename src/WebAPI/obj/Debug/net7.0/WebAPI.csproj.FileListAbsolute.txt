@@ -185,3 +185,4 @@ C:\Richard Puig\Pamakyabe\src\WebAPI\bin\Debug\net7.0\MediatR.Extensions.Autofac
 C:\Richard Puig\Pamakyabe\src\WebAPI\bin\Debug\net7.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Richard Puig\Pamakyabe\src\WebAPI\bin\Debug\net7.0\Mapster.dll
 C:\Richard Puig\Pamakyabe\src\WebAPI\bin\Debug\net7.0\Mapster.Core.dll
+C:\Richard Puig\Pamakyabe\src\WebAPI\bin\Debug\net7.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
