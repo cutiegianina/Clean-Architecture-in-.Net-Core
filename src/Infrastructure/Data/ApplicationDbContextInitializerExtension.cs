@@ -35,10 +35,10 @@ public class ApplicationDbContextInitializer
 		UserManager<ApplicationUser> userManager,
 		RoleManager<IdentityRole> roleManager)
 	{
-		_context = context;
-		_logger = logger;
-		_userManager = userManager;
-		_roleManager = roleManager;
+		_context		= context;
+		_logger			= logger;
+		_userManager	= userManager;
+		_roleManager	= roleManager;
 	}
 
 	public async Task InitializeAsync()
@@ -59,7 +59,8 @@ public class ApplicationDbContextInitializer
 		try
 		{
 			await TrySeedAsync();
-		} catch (Exception ex)
+		} 
+		catch (Exception ex)
 		{
 			_logger.LogError(ex, "An error occured while seeding the database!");
 		}
@@ -83,9 +84,10 @@ public class ApplicationDbContextInitializer
 			if (!string.IsNullOrWhiteSpace(administratorRole.Name))
 				await _userManager.AddToRolesAsync(administrator, new[] { administratorRole.Name });
 		}
-			
 
-
-
+		// Authenticating user
+		var admin = await _userManager.FindByEmailAsync(administrator.Email!);
+		string inputPassword = string.Empty;
+		bool isAuthenticated = await _userManager.CheckPasswordAsync(admin!, inputPassword);
 	}
 }
