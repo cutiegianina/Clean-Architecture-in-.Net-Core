@@ -19,5 +19,13 @@ public static class MapsterConfiguration
 
 		TypeAdapterConfig<Category, CategoryDto>.NewConfig()
 			.Map(dest => dest.Id, src => src.Id.Value);
+
+		TypeAdapterConfig<User, UserDto>.NewConfig()
+			.Map(dest => dest.Id, src => src.Id.Value);
+
+		TypeAdapterConfig<UserDto, User>.NewConfig()
+			.Ignore(dest => dest.Id)
+			.Ignore(dest => dest.Salt)
+			.Ignore(dest => dest.Iterations);
 	}
 }

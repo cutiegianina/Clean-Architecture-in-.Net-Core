@@ -9,16 +9,15 @@ namespace Application.Products.Commands;
 public sealed record CreateProductCommand(ProductDto Product) : IRequest<int>;
 internal sealed class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, int>
 {
-	private readonly IApplicationDbContext _context;
-
-	public CreateProductCommandHandler(IApplicationDbContext context) => 
-		_context = context;
+	private readonly IUnitOfWork<Product> _unitOfWork;
+	public CreateProductCommandHandler(IUnitOfWork<Product> unitOfWork) => 
+		_unitOfWork = unitOfWork;
 
 	public async Task<int> Handle(CreateProductCommand request, CancellationToken cancellationToken)
 	{
 		var product = request.Product.Adapt<Product>();
-		await _context.Product.AddAsync(product, cancellationToken);
+		await _unitOfWork.AddAsync(product, cancellationToken);
 
-		return await _context.SaveChangesAsync(cancellationToken);
+		return await _unitOfWork.CommitAsync(cancellationToken);
 	}
 }

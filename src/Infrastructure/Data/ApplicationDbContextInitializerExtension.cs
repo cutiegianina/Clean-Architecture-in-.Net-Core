@@ -46,6 +46,7 @@ public class ApplicationDbContextInitializer
 		try
 		{
 			await _context.Database.MigrateAsync();
+			var jwtLifetime = TimeSpan.FromSeconds(30);
 		}
 		catch (Exception ex)
 		{
@@ -54,6 +55,10 @@ public class ApplicationDbContextInitializer
 		}
 	}
 
+	/// <summary>
+	/// Try to seed default Role and User to the database if data doesn't exist yet.
+	/// </summary>
+	/// <returns></returns>
 	public async Task SeedAsync()
 	{
 		try

@@ -25,6 +25,7 @@
     <Folder Include="Categories\Commands\" />
     <Folder Include="Customers\Commands\" />
     <Folder Include="Customers\Queries\" />
+    <Folder Include="Users\Queries\" />
   </ItemGroup>
 
 </Project>

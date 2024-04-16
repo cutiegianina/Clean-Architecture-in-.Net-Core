@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "41juusS6aKuRwky0pHHDOoAevlXRhmoIDSjIhVIdDL2BMTtTLV5355LEDoKWKFpgZXPxzmYOFmZLdnqMPG6SiQ==",
+  "dgSpecHash": "7paRuwMDE5Imv2yGlY70P54apLkArHwfl02rN1OjrGHo5un/grWy+vKUjeG46+8NRJEGxNVg6dgDzVy/e2rwpQ==",
   "success": true,
   "projectFilePath": "C:\\Richard Puig\\Pamakyabe\\src\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,8 @@
     "C:\\Users\\richard.puig\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\richard.puig\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\richard.puig\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\richard.puig\\.nuget\\packages\\konscious.security.cryptography.argon2\\1.3.0\\konscious.security.cryptography.argon2.1.3.0.nupkg.sha512",
+    "C:\\Users\\richard.puig\\.nuget\\packages\\konscious.security.cryptography.blake2\\1.1.0\\konscious.security.cryptography.blake2.1.1.0.nupkg.sha512",
     "C:\\Users\\richard.puig\\.nuget\\packages\\mapster\\7.4.0\\mapster.7.4.0.nupkg.sha512",
     "C:\\Users\\richard.puig\\.nuget\\packages\\mapster.core\\1.2.1\\mapster.core.1.2.1.nupkg.sha512",
     "C:\\Users\\richard.puig\\.nuget\\packages\\mediatr\\12.2.0\\mediatr.12.2.0.nupkg.sha512",
