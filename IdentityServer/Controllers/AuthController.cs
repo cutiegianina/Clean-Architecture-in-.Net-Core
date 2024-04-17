@@ -1,11 +1,10 @@
 ﻿using Application.Dtos;
 using Application.Users.Queries;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using WebAPI.Models;
+using IdentityServer.Models;
 
-namespace WebAPI.Controllers;
+namespace IdentityServer.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]

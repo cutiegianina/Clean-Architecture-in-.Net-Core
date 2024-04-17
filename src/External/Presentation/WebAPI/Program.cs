@@ -9,8 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Host.AddApplicationLogs();
 
 // Add services to the container.
-var configuration = builder.Configuration;
-var services = builder.Services;
+IConfiguration configuration = builder.Configuration;
+IServiceCollection services = builder.Services;
 
 services.AddControllers();
 services.AddEndpointsApiExplorer();
