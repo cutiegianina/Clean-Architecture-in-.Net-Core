@@ -21,7 +21,8 @@ public static class MapsterConfiguration
 			.Map(dest => dest.Id, src => src.Id.Value);
 
 		TypeAdapterConfig<User, UserDto>.NewConfig()
-			.Map(dest => dest.Id, src => src.Id.Value);
+			.Map(dest => dest.Id, src => src.Id.Value)
+			.Ignore(dest => dest.Password);
 
 		TypeAdapterConfig<UserDto, User>.NewConfig()
 			.Ignore(dest => dest.Id)

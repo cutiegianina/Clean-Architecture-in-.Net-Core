@@ -1,6 +1,6 @@
 ﻿using Application.Common.Interfaces;
-using Application.Common.Interfaces.Data;
 using Application.Dtos;
+using Domain.Abstractions;
 using Domain.Entities;
 using Mapster;
 using MediatR;
@@ -23,7 +23,7 @@ internal sealed class CreateUserCommandHandler : IRequestHandler<CreateUserComma
         await GeneratePasswordAsync(user);
         await _unitOfWork.AddAsync(user, cancellationToken);
 
-        return await _unitOfWork.CommitAsync(cancellationToken);
+        return await _unitOfWork.SaveChangesAsync(cancellationToken);
 	}
 
     private async Task GeneratePasswordAsync(User user)

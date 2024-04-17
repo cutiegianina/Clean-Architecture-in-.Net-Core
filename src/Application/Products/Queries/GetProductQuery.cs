@@ -17,7 +17,7 @@ namespace Application.Products.Queries
 
 		public async Task<List<ProductDto>> Handle(GetProductQuery request, CancellationToken cancellationToken)
 		{
-			var products = await _context.Product.ToListAsync(cancellationToken);
+			var products = await _context.Product.AsNoTracking().ToListAsync(cancellationToken);
 
 			if (products is null)
 				return await Task.FromResult(new List<ProductDto>());

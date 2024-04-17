@@ -1,5 +1,5 @@
-﻿using Application.Common.Interfaces.Data;
-using Application.Dtos;
+﻿using Application.Dtos;
+using Domain.Abstractions;
 using Domain.Entities;
 using Mapster;
 using MediatR;
@@ -18,6 +18,6 @@ internal sealed class CreateProductCommandHandler : IRequestHandler<CreateProduc
 		var product = request.Product.Adapt<Product>();
 		await _unitOfWork.AddAsync(product, cancellationToken);
 
-		return await _unitOfWork.CommitAsync(cancellationToken);
+		return await _unitOfWork.SaveChangesAsync(cancellationToken);
 	}
 }

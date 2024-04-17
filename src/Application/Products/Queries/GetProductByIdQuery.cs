@@ -3,6 +3,7 @@ using Application.Dtos;
 using Domain.Entities.ValueObjects;
 using Mapster;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.Products.Queries;
 

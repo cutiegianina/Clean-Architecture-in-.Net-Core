@@ -1,15 +1,16 @@
 ﻿using Application.Common.Interfaces;
 using Application.Common.Interfaces.Data;
+using Domain.Abstractions;
 using Infrastructure.Data;
 using Infrastructure.Data.Context;
 using Infrastructure.Data.Interceptors;
 using Infrastructure.Identity;
 using Infrastructure.Persistence;
+using Infrastructure.Providers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 
 namespace Infrastructure;
 

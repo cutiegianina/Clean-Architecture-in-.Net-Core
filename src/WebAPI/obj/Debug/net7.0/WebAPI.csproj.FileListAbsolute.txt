@@ -103,6 +103,8 @@ C:\Richard Puig\Pamakyabe\src\WebAPI\bin\Debug\net7.0\Autofac.dll
 C:\Richard Puig\Pamakyabe\src\WebAPI\bin\Debug\net7.0\Azure.Core.dll
 C:\Richard Puig\Pamakyabe\src\WebAPI\bin\Debug\net7.0\Azure.Identity.dll
 C:\Richard Puig\Pamakyabe\src\WebAPI\bin\Debug\net7.0\Humanizer.dll
+C:\Richard Puig\Pamakyabe\src\WebAPI\bin\Debug\net7.0\Konscious.Security.Cryptography.Argon2.dll
+C:\Richard Puig\Pamakyabe\src\WebAPI\bin\Debug\net7.0\Konscious.Security.Cryptography.Blake2.dll
 C:\Richard Puig\Pamakyabe\src\WebAPI\bin\Debug\net7.0\Mapster.dll
 C:\Richard Puig\Pamakyabe\src\WebAPI\bin\Debug\net7.0\Mapster.Core.dll
 C:\Richard Puig\Pamakyabe\src\WebAPI\bin\Debug\net7.0\MediatR.dll
@@ -186,5 +188,3 @@ C:\Richard Puig\Pamakyabe\src\WebAPI\obj\Debug\net7.0\refint\WebAPI.dll
 C:\Richard Puig\Pamakyabe\src\WebAPI\obj\Debug\net7.0\WebAPI.pdb
 C:\Richard Puig\Pamakyabe\src\WebAPI\obj\Debug\net7.0\WebAPI.genruntimeconfig.cache
 C:\Richard Puig\Pamakyabe\src\WebAPI\obj\Debug\net7.0\ref\WebAPI.dll
-C:\Richard Puig\Pamakyabe\src\WebAPI\bin\Debug\net7.0\Konscious.Security.Cryptography.Argon2.dll
-C:\Richard Puig\Pamakyabe\src\WebAPI\bin\Debug\net7.0\Konscious.Security.Cryptography.Blake2.dll
