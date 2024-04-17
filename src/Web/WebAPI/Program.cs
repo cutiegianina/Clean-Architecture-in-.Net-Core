@@ -3,6 +3,8 @@ using Infrastructure.Data;
 using WebAPI.MiddleWares.LoggerConfiguration;
 using WebAPI.Middlewares;
 using System.Reflection;
+using Presentation.Controllers.WebAPI;
+using Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +20,7 @@ services.AddControllers()
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 services.AddInfrastructureServices(configuration);
+services.AddApplicationServices();
 services.AddMiddlewareServices();
 
 var app = builder.Build();

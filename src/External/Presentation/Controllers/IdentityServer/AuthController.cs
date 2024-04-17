@@ -1,5 +1,4 @@
-﻿using Application.Common.Interfaces.Data;
-using Application.Dtos;
+﻿using Application.Dtos;
 using Application.Users.Queries;
 using IdentityServer.Models;
 using MediatR;

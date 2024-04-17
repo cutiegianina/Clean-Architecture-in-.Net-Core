@@ -1,6 +1,7 @@
 using Application;
 using Infrastructure;
 using System.Reflection;
+using Presentation.Controllers.IdentityServer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,8 @@ services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 services.AddInfrastructureServices(configuration);
 services.AddApplicationServices();
+
+//services.AddTransient<AuthController>();
 
 var app = builder.Build();
 
