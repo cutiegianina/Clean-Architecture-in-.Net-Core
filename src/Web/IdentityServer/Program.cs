@@ -1,12 +1,12 @@
 using Application;
 using Infrastructure;
-
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
 IConfiguration configuration = builder.Configuration;
 IServiceCollection services = builder.Services;
-var presentationAssembly = typeof(Presentation.AssemblyReference).Assembly;
+Assembly presentationAssembly = typeof(Presentation.AssemblyReference).Assembly;
 
 // Add services to the container.
 services.AddControllers()

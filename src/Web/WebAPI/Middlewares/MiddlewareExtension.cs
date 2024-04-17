@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Builder;
 
-namespace Application.Middlewares;
+namespace WebAPI.Middlewares;
 
 public static class MiddlewareExtension
 {

@@ -2,7 +2,7 @@
 using Serilog;
 using Serilog.Events;
 
-namespace Application.LoggerConfiguration;
+namespace WebAPI.MiddleWares.LoggerConfiguration;
 public static class DependencyInjection
 {
 	public static IHostBuilder AddApplicationLogs(this IHostBuilder hostBuilder) =>

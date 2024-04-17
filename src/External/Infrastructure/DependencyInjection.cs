@@ -41,6 +41,7 @@ public static class DependencyInjection
 			.AddEntityFrameworkStores<ApplicationDbContext>()
 			.AddDefaultTokenProviders();
 
+		services.AddHealthChecks();
 		services.AddDataProtection();
 
 
