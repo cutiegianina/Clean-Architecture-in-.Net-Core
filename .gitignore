@@ -366,51 +366,6 @@ FodyWeavers.xsd
 appsettings.json
 appsettings.Development.json
 
-## TypeScript and Angular
-
-# Dependencies
-/node_modules
-/package-lock.json
-/yarn.lock
-
-# Compiled output
-/dist
-/tmp
-/out-tsc
-
-# Logs
-/logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# IDEs and Editors
-/.idea
-/.vscode
-/*.suo
-/*.ntvs*
-/*.njsproj
-/*.sln
-/*.sw?
-
-# OS files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-# Temporary files
-*.tmp
-*.temp
-*.tscache
-
-# Angular files
-/angular.json
-/.angular/cache
 
 # End-to-end test files
 /e2e/
