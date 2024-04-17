@@ -23,13 +23,7 @@ internal sealed class CheckUserSignInStatusQueryHandler : IRequestHandler<CheckU
 	{
 		var user = await _context.User.FirstOrDefaultAsync(x => x.Username == request.Username);
 
-		var isVerified = await _argon2Hasher.VerifyPasswordAsync(
-			request.Password,
-			user.Password,
-			user.Salt,
-			user.Iterations);
-
-		SignInStatus status = CheckSignInStatus(user, isVerified);
+		SignInStatus status = await CheckSignInStatus(user, request.Password);
 
 		return new UserSignInDto()
 		{
@@ -38,13 +32,16 @@ internal sealed class CheckUserSignInStatusQueryHandler : IRequestHandler<CheckU
 		};
 	}
 
-	private static SignInStatus CheckSignInStatus(User user, bool isVerified)
+	private async Task<SignInStatus> CheckSignInStatus(User user, string password)
 	{
 		if (user is null)
 			return SignInStatus.NotFound;
-		else if (!isVerified)
+		else if (!await VerifyPasswordAsync(user, password))
 			return SignInStatus.Invalid;
 
 		return SignInStatus.Granted;
 	}
+
+	private async Task<bool> VerifyPasswordAsync(User user, string password) =>
+		await _argon2Hasher.VerifyPasswordAsync(password, user.Password, user.Salt, user.Iterations);
 }

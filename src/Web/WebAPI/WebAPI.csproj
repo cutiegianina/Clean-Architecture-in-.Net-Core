@@ -32,8 +32,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\Application\Application.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Core\Application\Application.csproj" />
+    <ProjectReference Include="..\..\External\Infrastructure\Infrastructure.csproj" />
+    <ProjectReference Include="..\..\External\Presentation\Presentation.csproj" />
   </ItemGroup>
 
 </Project>

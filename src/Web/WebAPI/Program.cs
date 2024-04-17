@@ -1,6 +1,6 @@
 using Infrastructure;
 using Application;
-using WebAPI.Loggers;
+using Application.LoggerConfiguration;
 using Application.Middlewares;
 using Infrastructure.Data;
 
@@ -8,11 +8,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.AddApplicationLogs();
 
-// Add services to the container.
 IConfiguration configuration = builder.Configuration;
 IServiceCollection services = builder.Services;
+var presentationAssembly = typeof(Presentation.AssemblyReference).Assembly;
 
-services.AddControllers();
+// Add services to the container.
+services.AddControllers()
+		.AddApplicationPart(presentationAssembly);
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 services.AddInfrastructureServices(configuration);

@@ -1,7 +1,8 @@
-﻿using Serilog;
+﻿using Microsoft.Extensions.Hosting;
+using Serilog;
 using Serilog.Events;
 
-namespace WebAPI.Loggers;
+namespace Application.LoggerConfiguration;
 public static class DependencyInjection
 {
 	public static IHostBuilder AddApplicationLogs(this IHostBuilder hostBuilder) =>

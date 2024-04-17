@@ -1,10 +1,9 @@
 ﻿using Application.Dtos;
 using Application.Users.Commands;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebAPI.Controllers;
+namespace Presentation.Controllers.WebAPI;
 
 [Route("api/[controller]")]
 [ApiController]

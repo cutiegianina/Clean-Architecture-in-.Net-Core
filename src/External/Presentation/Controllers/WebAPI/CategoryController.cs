@@ -3,7 +3,7 @@ using Application.Dtos;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebAPI.Controllers;
+namespace Presentation.Controllers.WebAPI;
 
 [Route("api/[controller]")]
 [ApiController]
