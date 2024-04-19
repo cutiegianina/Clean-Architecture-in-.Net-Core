@@ -29,11 +29,7 @@ export class SignInComponent implements OnInit, AfterViewInit {
   });
 
   onSubmit() {
-    let userCredential: UserCredential = {
-      username: this.signInForm.get<string>('username')?.value,
-      password: this.signInForm.get<string>('password')?.value
-    };
-
+    const userCredential = this.signInForm.value as UserCredential;
     this.authService.login(userCredential)
       .subscribe(res => {
         console.log(res);
