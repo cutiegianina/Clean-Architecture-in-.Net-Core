@@ -1,7 +1,6 @@
 using Application;
 using Infrastructure;
 using System.Reflection;
-using Presentation.Controllers.IdentityServer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,5 +32,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors("CorsPolicy");
 
 app.Run();

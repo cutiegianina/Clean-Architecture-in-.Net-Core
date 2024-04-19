@@ -1,0 +1,53 @@
+.sign-in-container {
+    width: 450px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 7px;
+}
+
+.veritaspay-logo {
+    height: 50px;
+    filter: drop-shadow(2px 4px 6px #3391ff);
+}
+
+.input-label {
+    z-index: 10;
+    position: absolute;
+    margin-top: -12px;
+    margin-left: 7px;
+    background-color: #fff;
+    display: none;
+    color: #0f50bf;
+}
+
+.forgot-password-label {
+    display: flex;
+    flex-direction: row-reverse;
+    font-size: 12px;
+    padding-top: 5px;
+    color: #0f50bf;
+    cursor: pointer;
+}
+
+.eye-icon {
+    position: absolute;
+    top: 50%;
+    display: flex;
+    flex-direction: row-reverse;
+    transform: translateX(-50%);
+    margin-top: 10px;
+    margin-left: 25rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    outline: none;
+    color:hsl(from rgb(80, 75, 75) h s l);
+    z-index: 9999;
+    background-color: #fff;
+}
+
+.create-an-account {
+    text-decoration: none;
+    cursor: pointer;
+    color: #0f50bf;
+}

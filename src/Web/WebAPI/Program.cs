@@ -3,7 +3,6 @@ using Infrastructure.Data;
 using WebAPI.MiddleWares.LoggerConfiguration;
 using WebAPI.Middlewares;
 using System.Reflection;
-using Presentation.Controllers.WebAPI;
 using Application;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +14,7 @@ IServiceCollection services = builder.Services;
 Assembly presentationAssembly = typeof(Presentation.AssemblyReference).Assembly;
 
 // Add services to the container.
+
 services.AddControllers()
 		.AddApplicationPart(presentationAssembly);
 services.AddEndpointsApiExplorer();
@@ -49,6 +49,8 @@ app.UseApplicationLogger();
 app.UseAuthentication();
 
 app.UseAuthorization();
+
+app.UseCors("CorsPolicy");
 
 app.MapControllers();
 

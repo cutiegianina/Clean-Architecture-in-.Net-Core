@@ -44,6 +44,17 @@ public static class DependencyInjection
 		services.AddHealthChecks();
 		services.AddDataProtection();
 
+		services.AddCors(options =>
+		{
+			options.AddPolicy("CorsPolicy", builder =>
+			{
+				builder.WithOrigins("http://localhost:4200") // Specify the allowed origin
+					   .AllowAnyMethod()  // Allows all methods
+					   .AllowAnyHeader()  // Allows all headers
+					   .AllowCredentials(); // Allows credentials
+			});
+		});
+
 
 		return services;
 	}
