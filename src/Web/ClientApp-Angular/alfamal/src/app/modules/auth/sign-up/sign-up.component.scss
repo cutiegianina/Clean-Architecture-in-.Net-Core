@@ -10,6 +10,12 @@
     filter: drop-shadow(2px 4px 6px #3391ff);
 }
 
+.input-password-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
 .input-label {
     z-index: 10;
     position: absolute;
@@ -31,11 +37,10 @@
 
 .eye-icon {
     position: absolute;
-    top: 50%;
     display: flex;
     flex-direction: row-reverse;
-    transform: translateX(-50%);
-    margin-top: 10px;
+    align-items: center;
+    right: 10px;
     margin-left: 25rem;
     border: none;
     background: none;

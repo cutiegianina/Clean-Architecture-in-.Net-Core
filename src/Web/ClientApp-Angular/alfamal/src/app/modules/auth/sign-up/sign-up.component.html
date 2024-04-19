@@ -3,20 +3,52 @@
         <img src="/assets/img/veritaspay-logo.svg" class="veritaspay-logo" alt="veritaspay logo" />
     </div>
     <h4 class="pb-2 text-center">Create an account</h4>
-    <form>
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+        <div class="form-group d-flex justify-content-between pb-4">
+            <div class="">
+                <span class="input-label" id="input-label first-name">First Name</span>
+                <input type="text" class="form-control form-input" id="first-name" formControlName="firstName" placeholder="First Name" maxlength="32" />
+            </div>
+            <div class="">
+                <span class="input-label" id="input-label last-name">Last Name</span>
+                <input type="text" class="form-control form-input" id="last-name" formControlName="lastName" placeholder="Last Name" maxlength="32" />
+            </div>
+        </div>
         <div class="form-group pb-4">
             <span class="input-label" id="input-label username">Username</span>
-            <input type="text" id="username" class="form-control form-input" name="username" placeholder="Username" />
+            <input formControlName="username" type="text" id="username" class="form-control form-input" name="username" placeholder="Username" maxlength="32" />
+            @if (signUpForm.get('username')?.hasError('required') && signUpForm.get('username')?.dirty) {
+                <small class="text-danger">Username field is required!</small>
+            }
+            @if (signUpForm.get('username')?.hasError('minlength') && signUpForm.get('username')?.dirty) {
+                <small class="text-danger">Minimum of 8 characters!</small>
+            }
         </div>
         <div class="form-group pb-4">
             <span class="input-label" id="input-label password">Password</span>
-            <input [type]="passwordType" id="password" class="form-control form-input" name="password" placeholder="Password" maxlength="32" />
-            <i [class]="eyeIcon" class="eye-icon" (click)="toggleEyeIcon($event)"></i>
-            <small class="forgot-password-label">Forgot password?</small>
+            <div class="input-password-group">
+                <input formControlName="password" [type]="formService.passwordType" id="password" class="form-control form-input" name="password" placeholder="Password" maxlength="32" />
+                <i [class]="formService.eyeIcon" class="eye-icon" (click)="formService.toggleEyeIcon($event)"></i>
+            </div>
+            <div class="d-flex flex-column">
+                @if (signUpForm.get('password')?.hasError('required') && signUpForm.get('password')?.dirty) {
+                    <small class="text-danger">Password field is required!</small>
+                }
+                @if (signUpForm.get('password')?.hasError('minlength') && signUpForm.get('password')?.dirty) {
+                    <small class="text-danger">Minimum of 8 characters!</small>
+                }
+                @if (signUpForm.get('password')?.errors?.['pattern'] && signUpForm.get('password')?.dirty) {
+                    <small class="text-danger">Password must contain alphanumeric & special character!</small>
+                } 
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary w-100">Sign In</button>
+        <div class="form-group pb-4">
+            <span class="input-label" id="input-label email">Email</span>
+            <input type="email" class="form-control form-input" id="email" formControlName="email" placeholder="Email - example@email.com" />
+        </div>
+        <button type="submit" class="btn btn-primary w-100 submit" [disabled]="signUpForm.invalid">Sign In</button>
         <div class="text-center p-2">
-            <a routerLink="/sign-in" class="create-an-account">Back to Sign in</a>
+            <a routerLink="/sign-in" class="create-an-account">Back to sign in</a>
         </div>
     </form>
     <router-outlet></router-outlet>
