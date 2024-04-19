@@ -60,3 +60,8 @@ button.submit:disabled {
     cursor: not-allowed;
     pointer-events: all !important;
 }
+
+.login-failed {
+    background-color: rgb(237, 163, 163);
+    border-radius: 7px;
+}

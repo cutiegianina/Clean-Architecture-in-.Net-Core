@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { fromEvent } from 'rxjs';
 import { User } from '../../../core/models/user';
 import { AuthService } from '../../../core/services/auth.service';
 import { CommonModule } from '@angular/common';
@@ -24,11 +23,11 @@ export class SignUpComponent {
   }
   
   signUpForm = this.fb.group({
-    firstName: [''],
-    lastName: [''],
-    username: [''],
-    password: [''],
-    email: ['']
+    firstName: ['', [Validators.required]],
+    lastName: ['', [Validators.required]],
+    username: ['', [Validators.required]],
+    password: ['', [Validators.required]],
+    email: ['', [Validators.required]]
   });
 
   onSubmit() {
@@ -36,8 +35,8 @@ export class SignUpComponent {
       this.signUpForm.markAllAsTouched();
       return;
     }
-    const userCredential = this.signUpForm.value as User;
-    this.authService.registerUser(userCredential)
+    const user = this.signUpForm.value as User;
+    this.authService.registerUser(user)
       .subscribe(res => {
         console.log(res);
       })

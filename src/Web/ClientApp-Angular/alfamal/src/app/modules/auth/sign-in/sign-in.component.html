@@ -3,6 +3,11 @@
         <img src="/assets/img/veritaspay-logo.svg" class="veritaspay-logo" alt="veritaspay logo" />
     </div>
     <h4 class="pb-2 text-center">Sign in</h4>
+    @if (!signInStatus) {
+        <div class="login-failed text-center p-2 mb-3">
+            <small class="text-danger">Incorrect username/password!</small>
+        </div>
+    }
     <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
         <div class="form-group pb-4">
             <span class="input-label" id="input-label username">Username</span>
@@ -39,4 +44,15 @@
         </div>
     </form>
     <router-outlet></router-outlet>
-</div>  
+</div>
+
+<div class="my-container">
+    <ng-template #customLoadingTemplate>
+    </ng-template>
+  
+    <ngx-loading
+      [show]="loading"
+      [config]="{ backdropBorderRadius: '3px' }"
+      [template]="customLoadingTemplate">
+    </ngx-loading>
+  </div>
