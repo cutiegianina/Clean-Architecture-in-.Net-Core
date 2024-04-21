@@ -21,13 +21,28 @@ export class SignUpComponent {
     private fb: FormBuilder,
     public formService: FormService) {
   }
+
+  roles = [
+    { id: 1, name: 'Admin' },
+    { id: 2, name: 'Merchant' },
+    { id: 3, name: 'User' }
+  ];
+
+  genders = [
+    { id: 1, name: 'Male', },
+    { id: 2, name: 'Female' }
+  ];
   
   signUpForm = this.fb.group({
     firstName: ['', [Validators.required]],
     lastName: ['', [Validators.required]],
     username: ['', [Validators.required]],
     password: ['', [Validators.required]],
-    email: ['', [Validators.required]]
+    email: ['', [Validators.required]],
+    address: ['', [Validators.required]],
+    roleId: [this.roles[0].id],
+    genderId: [this.genders[0].id],
+    dateOfBirth: [new Date()]
   });
 
   onSubmit() {

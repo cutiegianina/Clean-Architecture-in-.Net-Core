@@ -11,17 +11,26 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  private readonly baseURL: string = 'https://localhost:7136/api/auth/login';
+  private readonly baseURL: string = 'https://localhost:7136/api/auth';
+
+  private readonly userURL: string = 'https://localhost:44311/api/user';
 
   registerUser(user: User) : Observable<User> {
-    
-    return new Observable<User>();
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post<User>(`${this.userURL}/register`, user, { headers: headers})
+      .pipe(
+        catchError(error => {
+          console.error('Registration failed!', error);
+          return throwError(() => new Error('Registration failed!'))
+        })
+      )
   }
 
   login(userCredential: UserCredential): Observable<UserCredential> {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    return this.http.post<UserCredential>(`${this.baseURL}`, userCredential, { headers : headers })
+    return this.http.post<UserCredential>(`${this.baseURL}/login`, userCredential, { headers: headers })
       .pipe(
         catchError(error => {
           console.error('Error with request', error);

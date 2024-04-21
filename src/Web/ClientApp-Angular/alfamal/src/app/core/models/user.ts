@@ -4,5 +4,9 @@ export class User {
     username: string = '';
     password: string = '';
     email: string = '';
-    birthDate: Date = new Date();
+    address: string = '';
+    roleId: number = 0;
+    genderId: number = 0;
+    userStatusId?: number;
+    dateOfBirth: Date = new Date();
 }

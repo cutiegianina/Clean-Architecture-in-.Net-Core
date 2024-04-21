@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { UserCredential } from '../../../core/models/user-credential';
 import { AuthService } from '../../../core/services/auth.service';
 import { CommonModule } from '@angular/common';
@@ -27,9 +27,19 @@ export class SignInComponent implements OnInit, AfterViewInit {
   loading: boolean = false;
 
   signInForm = this.fb.group({
-    username: ['', [Validators.required, Validators.minLength(8), Validators.max(25)]],
-    password: ['', [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\\W_]).+$')]]
+    username: ['', this.defaultValidators()],
+    password: ['', this.defaultValidators([Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\\W_]).+$')])]
   });
+
+  defaultValidators(validator?: ValidatorFn[]): ValidatorFn[] {
+    const validators: ValidatorFn[] = [
+      Validators.required,
+      Validators.minLength(8),
+      Validators.maxLength(32)
+    ];
+    validator?.forEach(v => validators.push(v));
+    return validators;
+  }
 
   getSignInStatus = (res: any): void => {
     this.signInStatus = res['userSignInStatus'] == 1;
@@ -39,20 +49,18 @@ export class SignInComponent implements OnInit, AfterViewInit {
     }
   };
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.signInForm.invalid) {
       this.signInForm.markAllAsTouched();
       return;
     }
     this.loading = true;
-    setTimeout(() => {
-      const userCredential = this.signInForm.value as UserCredential;
-      this.authService.login(userCredential)
-        .subscribe({
-          next: (res: any) => this.getSignInStatus(res),
-          error: (err) => console.error('Sign in failed!', err)
-        })
-    }, 3000);
+    const userCredential = this.signInForm.value as UserCredential;
+    this.authService.login(userCredential)
+      .subscribe({
+        next: (res: any) => this.getSignInStatus(res),
+        error: (err) => console.error('Sign in failed!', err)
+      })
   }
 
   ngOnInit() {

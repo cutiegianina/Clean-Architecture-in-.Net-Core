@@ -4,12 +4,13 @@
     </div>
     <h4 class="pb-2 text-center">Create an account</h4>
     <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-        <div class="form-group d-flex justify-content-between pb-4">
-            <div class="">
+        <!-- {{ signUpForm.value | json }} -->
+        <div class="row form-group">
+            <div class="col-md-6 pb-4">
                 <span class="input-label" id="input-label first-name">First Name</span>
                 <input type="text" class="form-control form-input" id="first-name" formControlName="firstName" placeholder="First Name" maxlength="32" />
             </div>
-            <div class="">
+            <div class="col-md-6 pb-4">
                 <span class="input-label" id="input-label last-name">Last Name</span>
                 <input type="text" class="form-control form-input" id="last-name" formControlName="lastName" placeholder="Last Name" maxlength="32" />
             </div>
@@ -46,7 +47,44 @@
             <span class="input-label" id="input-label email">Email</span>
             <input type="email" class="form-control form-input" id="email" formControlName="email" placeholder="Email - example@email.com" />
         </div>
-        <button type="submit" class="btn btn-primary w-100 submit" [disabled]="signUpForm.invalid">Sign In</button>
+        <div class="form-group pb-4">
+            <span class="input-label" id="input-label address">Address</span>
+            <input formControlName="address" type="text" id="address" class="form-control form-input" name="username" placeholder="Address" />
+            @if (signUpForm.get('address')?.hasError('required') && signUpForm.get('address')?.dirty) {
+                <small class="text-danger">Username field is required!</small>
+            }
+            @if (signUpForm.get('address')?.hasError('minlength') && signUpForm.get('address')?.dirty) {
+                <small class="text-danger">Minimum of 8 characters!</small>
+            }
+        </div>
+        <div class="row">
+            <div class="role-select pb-4 col-md-6">
+                <label class="label-input-label mb-1">Role</label>
+                <select class="form-select" formControlName="roleId">
+                    @for (role of roles; track role) {
+                        <option [value]="role.id">
+                            {{ role.name }}
+                        </option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="label-input-label ms-1">Gender</label>
+                <div class="row m-2">
+                    @for (gender of genders; track gender) {
+                        <div class="form-check col-md-6">
+                            <input type="radio" class="form-check-input" formControlName="genderId" [value]="gender.id" />
+                            <label class="form-check-label" for="flexRadioDefault1">{{ gender.name }}</label>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="form-group d-flex flex-column pb-4">
+            <label class="label-input-label">Date of birth</label>
+            <input type="date" class="form-control" formControlName="dateOfBirth" />
+        </div>
+        <button type="submit" class="btn btn-primary w-100 submit" [disabled]="signUpForm.invalid">Sign up</button>
         <div class="text-center p-2">
             <a routerLink="/sign-in" class="create-an-account">Back to sign in</a>
         </div>

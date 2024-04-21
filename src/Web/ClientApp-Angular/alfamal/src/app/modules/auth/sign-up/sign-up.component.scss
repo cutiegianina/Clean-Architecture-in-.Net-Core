@@ -1,5 +1,5 @@
 .sign-in-container {
-    width: 450px;
+    width: clamp(300px, 80vw, 600px);
     background-color: #fff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 7px;
@@ -54,5 +54,18 @@
 .create-an-account {
     text-decoration: none;
     cursor: pointer;
+    color: #0f50bf;
+}
+
+small {
+    font-size: 12px;
+}
+
+button.submit:disabled {
+    cursor: not-allowed;
+    pointer-events: all !important;
+}
+
+ .label-input-label {
     color: #0f50bf;
 }
