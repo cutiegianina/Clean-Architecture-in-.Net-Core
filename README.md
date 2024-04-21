@@ -3,9 +3,9 @@
 
 // EF Core Migration
 
-    • Add Migration: dotnet ef migrations add InitialMigration --project src/Infrastructure --startup-project src/WebAPI --output-dir Data/Migrations --context ApplicationDbContext
+    • Add Migration: dotnet ef migrations add InitialMigration --project src/External/Infrastructure --startup-project src/Web/WebAPI --output-dir Data/Migrations --context ApplicationDbContext
 
-    • Update Migration: dotnet ef database update --project src/Infrastructure --startup-project src/WebAPI --context ApplicationDbContext
+    • Update Migration: dotnet ef database update --project src/External/Infrastructure --startup-project src/Web/WebAPI --context ApplicationDbContext
 
 
 // Docker
