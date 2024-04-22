@@ -21,9 +21,7 @@ export class SignInComponent implements OnInit, AfterViewInit {
     private fb: FormBuilder,
     private authService: AuthService,
     public formService: FormService,
-    private router: Router) { }
-
-  signInStatus: boolean = true;
+    private router: Router) {console.log('SignInComponent') }
   loading: boolean = false;
 
   signInForm = this.fb.group({
@@ -31,21 +29,26 @@ export class SignInComponent implements OnInit, AfterViewInit {
     password: ['', this.defaultValidators([Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\\W_]).+$')])]
   });
 
+  isLoggedIn: boolean = true;
+
   defaultValidators(validator?: ValidatorFn[]): ValidatorFn[] {
     const validators: ValidatorFn[] = [
       Validators.required,
-      Validators.minLength(8),
-      Validators.maxLength(32)
+      Validators.minLength(8)
     ];
     validator?.forEach(v => validators.push(v));
     return validators;
   }
 
   getSignInStatus = (res: any): void => {
-    this.signInStatus = res['userSignInStatus'] == 1;
+    let loggedInSuccessful = res['userSignInStatus'] == 1;
+    if (loggedInSuccessful) {
+      this.authService.login();
+      this.isLoggedIn = loggedInSuccessful;
+    }
     this.loading = false;
-    if (this.signInStatus) {
-      this.router.navigate(['/home']);
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/admin']);
     }
   };
 
@@ -56,7 +59,7 @@ export class SignInComponent implements OnInit, AfterViewInit {
     }
     this.loading = true;
     const userCredential = this.signInForm.value as UserCredential;
-    this.authService.login(userCredential)
+    this.authService.signIn(userCredential)
       .subscribe({
         next: (res: any) => this.getSignInStatus(res),
         error: (err) => console.error('Sign in failed!', err)

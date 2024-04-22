@@ -3,7 +3,7 @@
         <img src="/assets/img/veritaspay-logo.svg" class="veritaspay-logo" alt="veritaspay logo" />
     </div>
     <h4 class="pb-2 text-center">Sign in</h4>
-    @if (!signInStatus) {
+    @if (!isLoggedIn) {
         <div class="login-failed text-center p-2 mb-3">
             <small class="text-danger">Incorrect username/password!</small>
         </div>

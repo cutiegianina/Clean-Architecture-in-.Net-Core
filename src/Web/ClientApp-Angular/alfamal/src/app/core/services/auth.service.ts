@@ -15,6 +15,14 @@ export class AuthService {
 
   private readonly userURL: string = 'https://localhost:44311/api/user';
 
+  private signInStatus: boolean = false;
+
+  isLoggedIn = ():boolean => this.signInStatus;
+
+  login = (): boolean => this.signInStatus = true;
+
+  logout = (): boolean => this.signInStatus = false;
+  
   registerUser(user: User) : Observable<User> {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
@@ -27,7 +35,7 @@ export class AuthService {
       )
   }
 
-  login(userCredential: UserCredential): Observable<UserCredential> {
+  signIn(userCredential: UserCredential): Observable<UserCredential> {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     return this.http.post<UserCredential>(`${this.baseURL}/login`, userCredential, { headers: headers })
@@ -38,4 +46,5 @@ export class AuthService {
         })
       );
   }
+
 }

@@ -19,7 +19,7 @@ export class SignUpComponent {
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
-    public formService: FormService) {
+    public formService: FormService) {console.log('SignUpComponent')
   }
 
   roles = [

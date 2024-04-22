@@ -22,7 +22,6 @@ export class HttpClientService {
   }
 
   getDataById(url: string, id: string): Observable<any> {
-    let header = new HttpHeaders().append('id', id);
     return this.http.get(`${this.baseURL}/${url}/${id}`)
       .pipe(
         catchError(error => {
