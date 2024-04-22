@@ -22,8 +22,8 @@
 // TODO
 
     • Develop front-end using Angular 17 (In progress)
-        - Sign in page (Partially done)
-        - Sign up page
+        - Sign in page (Done)
+        - Sign up page (Done)
         - Shopping page
 
-    • JWT Authentication
+    • JWT Authentication (In progress)
