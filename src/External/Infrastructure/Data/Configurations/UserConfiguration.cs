@@ -25,5 +25,15 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 			.HasConversion(
 				p => p.Value,
 				value => new UserId(value));
+
+		builder
+			.HasOne(p => p.Role)
+			.WithMany()
+			.HasForeignKey(p => p.RoleId);
+
+		builder
+			.HasOne(p => p.Gender)
+			.WithMany()
+			.HasForeignKey(p => p.GenderId);
 	}
 }

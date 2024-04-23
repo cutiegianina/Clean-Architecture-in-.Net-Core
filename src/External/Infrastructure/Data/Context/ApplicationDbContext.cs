@@ -23,4 +23,6 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplica
     public DbSet<Category> Category { get; set; }
     public DbSet<Customer> Customer { get; set; }
     public DbSet<User> User { get; set; }
+    public DbSet<Gender> Gender { get; set; }
+    public DbSet<Role> Role { get; set; }
 }

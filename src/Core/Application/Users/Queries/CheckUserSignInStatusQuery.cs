@@ -21,7 +21,10 @@ internal sealed class CheckUserSignInStatusQueryHandler : IRequestHandler<CheckU
 
     public async Task<UserSignInDto> Handle(CheckUserSignInStatusQuery request, CancellationToken cancellationToken)
 	{
-		var user = await _context.User.FirstOrDefaultAsync(x => x.Username == request.Username);
+		var user = await _context.User
+			.Include(p => p.Role)
+			.Include(p => p.Gender)
+			.FirstOrDefaultAsync(x => x.Username == request.Username);
 
 		SignInStatus status = await CheckSignInStatus(user, request.Password);
 

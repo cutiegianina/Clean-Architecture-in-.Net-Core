@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { User } from '../../../core/models/user';
 import { AuthService } from '../../../core/services/auth.service';
@@ -34,17 +34,26 @@ export class SignUpComponent {
   ];
   
   signUpForm = this.fb.group({
-    firstName: ['', [Validators.required]],
-    lastName: ['', [Validators.required]],
-    username: ['', [Validators.required]],
-    password: ['', [Validators.required]],
-    email: ['', [Validators.required]],
-    address: ['', [Validators.required]],
-    roleId: [this.roles[0].id],
-    genderId: [this.genders[0].id],
+    firstName: ['', this.defaultValidators()],
+    lastName: ['', this.defaultValidators()],
+    username: ['', this.defaultValidators()],
+    password: ['', this.defaultValidators([Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\\W_]).+$')])],
+    email: ['', this.defaultValidators()],
+    address: ['', this.defaultValidators()],
+    roleId: [this.roles[0].id, [Validators.required]],
+    genderId: [this.genders[0].id, [Validators.required]],
     dateOfBirth: [new Date()]
   });
 
+  defaultValidators(validator?: ValidatorFn[]): ValidatorFn[] {
+    const validators: ValidatorFn[] = [
+      Validators.required,
+      Validators.minLength(8)
+    ];
+    validator?.forEach(v => validators.push(v));
+    return validators;
+  }
+  
   onSubmit() {
     if (this.signUpForm.invalid) {
       this.signUpForm.markAllAsTouched();

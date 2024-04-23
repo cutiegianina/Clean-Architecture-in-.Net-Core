@@ -10,4 +10,6 @@ public interface IApplicationDbContext
     DbSet<Category> Category { get; set; }
     DbSet<Customer> Customer { get; set; }
     DbSet<User> User { get; set; }
+    DbSet<Gender> Gender { get; set; }
+    DbSet<Role> Role { get; set; }
 }

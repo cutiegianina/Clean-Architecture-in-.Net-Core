@@ -20,7 +20,8 @@ services.AddControllers()
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 services.AddInfrastructureServices(configuration);
-services.AddApplicationServices();
+services.AddApplicationServices(configuration);
+services.AddAuthorization();
 services.AddMiddlewareServices();
 
 var app = builder.Build();

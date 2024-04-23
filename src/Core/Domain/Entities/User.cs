@@ -1,8 +1,9 @@
 ﻿using Domain.Entities.ValueObjects;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities;
 
-public class User : AuditableEntity
+public partial class User : AuditableEntity
 {
 	public UserId Id { get; set; }
 	public string FirstName { get; set; }
@@ -20,4 +21,10 @@ public class User : AuditableEntity
 	public DateTime? DateDeleted { get; set; }
 	public DateTime? DateLastLoggedIn { get; set; }
 	public DateTime DateOfBirth { get; set; }
+}
+
+public partial class User
+{
+	public Gender Gender { get; set; }
+	public Role Role { get; set; }
 }

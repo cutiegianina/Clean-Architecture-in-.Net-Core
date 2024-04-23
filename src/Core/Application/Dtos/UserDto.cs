@@ -1,4 +1,6 @@
-﻿namespace Application.Dtos;
+﻿using Domain.Entities;
+
+namespace Application.Dtos;
 
 public class UserDto
 {
@@ -16,4 +18,6 @@ public class UserDto
 	public DateTime DateDeleted { get; set; }
 	public DateTime DateLastLoggedIn { get; set; }
 	public DateTime DateOfBirth { get; set; }
+	public Role Role { get; set; }
+	public Gender Gender { get; set; }
 }

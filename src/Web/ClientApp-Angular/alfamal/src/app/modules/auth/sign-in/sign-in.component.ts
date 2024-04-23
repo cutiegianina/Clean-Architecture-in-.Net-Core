@@ -26,7 +26,7 @@ export class SignInComponent implements OnInit, AfterViewInit {
 
   signInForm = this.fb.group({
     username: ['', this.defaultValidators()],
-    password: ['', this.defaultValidators([Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\\W_]).+$')])]
+    password: ['', this.defaultValidators()]
   });
 
   isLoggedIn: boolean = true;
@@ -44,8 +44,8 @@ export class SignInComponent implements OnInit, AfterViewInit {
     let loggedInSuccessful = res['userSignInStatus'] == 1;
     if (loggedInSuccessful) {
       this.authService.login();
-      this.isLoggedIn = loggedInSuccessful;
     }
+    this.isLoggedIn = loggedInSuccessful;
     this.loading = false;
     if (this.authService.isLoggedIn()) {
       this.router.navigate(['/admin']);

@@ -18,8 +18,10 @@ internal sealed class GetProductByIdQueryHandler : IRequestHandler<GetProductByI
 
 	public async Task<ProductDto> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
 	{
-		var product = await _context.Product.FindAsync(new ProductId(request.Id), cancellationToken);
-
+		var product = await _context.Product
+			.Include(p => p.Category)
+			.FirstOrDefaultAsync(p => p.Id == new ProductId(request.Id), cancellationToken);
+			
 		if (product is null)
 			return await Task.FromResult(new ProductDto());
 
