@@ -26,4 +26,5 @@
         - Sign up page (Done)
         - Shopping page
 
-    • JWT Authentication (In progress)
+    • JWT Authentication (Done)
+        - Refresh token (In progress)
