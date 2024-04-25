@@ -1,6 +1,7 @@
 ﻿using Application.Common.Interfaces;
 using Application.Common.Interfaces.Data;
 using Application.Common.Interfaces.Services;
+using Application.Models.IdentityServer;
 using Domain.Abstractions;
 using Infrastructure.Data;
 using Infrastructure.Data.Context;
@@ -9,10 +10,13 @@ using Infrastructure.Identity;
 using Infrastructure.Persistence;
 using Infrastructure.Providers;
 using Infrastructure.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace Infrastructure;
 
@@ -57,6 +61,30 @@ public static class DependencyInjection
 					   .AllowCredentials(); // Allows credentials
 			});
 		});
+
+		services.AddAuthentication(options =>
+		{
+			options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+			options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+		})
+		.AddJwtBearer(options =>
+		{
+			var jwtSettings = configuration.GetSection("JwtSettings").Get<JwtSettings>();
+
+			options.TokenValidationParameters = new TokenValidationParameters()
+			{
+				ValidateIssuer = true,
+				ValidateAudience = true,
+				ValidateLifetime = true,
+				ValidateIssuerSigningKey = true,
+				ValidIssuer = jwtSettings.Issuer,
+				ValidAudience = jwtSettings.Audience,
+				ValidAlgorithms = new string[] { SecurityAlgorithms.HmacSha512Signature }.AsEnumerable(),
+				IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey))
+			};
+		});
+
+		services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
 
 
 		return services;
