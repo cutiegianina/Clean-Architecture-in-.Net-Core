@@ -1,10 +1,7 @@
 ﻿using Domain.Entities.ValueObjects;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities;
 
-[Table("Products")]
 public partial class Product : AuditableEntity
 {
 	public ProductId Id { get; private set; }
@@ -18,5 +15,4 @@ public partial class Product : AuditableEntity
 public partial class Product
 {
 	public Category? Category { get; set; }
-
 }

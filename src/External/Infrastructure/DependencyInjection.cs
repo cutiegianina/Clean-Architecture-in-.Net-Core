@@ -1,5 +1,6 @@
 ﻿using Application.Common.Interfaces;
 using Application.Common.Interfaces.Data;
+using Application.Common.Interfaces.Services;
 using Domain.Abstractions;
 using Infrastructure.Data;
 using Infrastructure.Data.Context;
@@ -7,6 +8,7 @@ using Infrastructure.Data.Interceptors;
 using Infrastructure.Identity;
 using Infrastructure.Persistence;
 using Infrastructure.Providers;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -34,6 +36,7 @@ public static class DependencyInjection
 		services.AddScoped<ApplicationDbContextInitializer>();
 		services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
 		services.AddScoped<IArgon2Hasher, Argon2Hasher>();
+		services.AddScoped<IJwtTokenService, JwtTokenService>();
 
 		services
 			.AddIdentityCore<ApplicationUser>()

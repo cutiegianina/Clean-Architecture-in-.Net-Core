@@ -47,8 +47,7 @@ export class SignUpComponent {
 
   defaultValidators(validator?: ValidatorFn[]): ValidatorFn[] {
     const validators: ValidatorFn[] = [
-      Validators.required,
-      Validators.minLength(8)
+      Validators.required
     ];
     validator?.forEach(v => validators.push(v));
     return validators;

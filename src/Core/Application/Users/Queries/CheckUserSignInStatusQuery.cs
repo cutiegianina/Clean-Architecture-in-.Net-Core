@@ -15,7 +15,7 @@ internal sealed class CheckUserSignInStatusQueryHandler : IRequestHandler<CheckU
 {
 	private readonly IArgon2Hasher _argon2Hasher;
 	private readonly IApplicationDbContext _context;
-
+	
     public CheckUserSignInStatusQueryHandler(IArgon2Hasher argon2Hasher, IApplicationDbContext context) =>
         (_argon2Hasher, _context) = (argon2Hasher, context);
 

@@ -3,6 +3,7 @@ using Application.Products.Commands;
 using Application.Products.Queries;
 using Domain.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Presentation.Controllers.WebAPI;
@@ -22,6 +23,7 @@ public class ProductController : ControllerBase
         return Ok(response);
     }
 
+    [Authorize]
     [HttpGet("{id}")]
     public async Task<ActionResult<ProductDto>> Get([FromRoute] Guid id)
     {

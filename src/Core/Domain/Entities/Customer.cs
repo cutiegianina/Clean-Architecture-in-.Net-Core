@@ -1,10 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Domain.Entities.ValueObjects;
+﻿using Domain.Entities.ValueObjects;
 
 namespace Domain.Entities;
 
-[Table("Customers")]
 public partial class Customer : AuditableEntity
 {
     public CustomerId Id { get; private set; }
