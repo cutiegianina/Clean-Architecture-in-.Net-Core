@@ -11,6 +11,7 @@ using Infrastructure.Persistence;
 using Infrastructure.Providers;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -41,6 +42,8 @@ public static class DependencyInjection
 		services.AddScoped(typeof(IUnitOfWork<>), typeof(UnitOfWork<>));
 		services.AddScoped<IArgon2Hasher, Argon2Hasher>();
 		services.AddScoped<IJwtTokenService, JwtTokenService>();
+		//services.AddScoped<IHttpContextAccessor>();
+		services.AddHttpContextAccessor();
 
 		services
 			.AddIdentityCore<ApplicationUser>()
@@ -64,23 +67,24 @@ public static class DependencyInjection
 
 		services.AddAuthentication(options =>
 		{
-			options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-			options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+			options.DefaultAuthenticateScheme	= JwtBearerDefaults.AuthenticationScheme;
+			options.DefaultChallengeScheme		= JwtBearerDefaults.AuthenticationScheme;
+			options.DefaultScheme				= JwtBearerDefaults.AuthenticationScheme;
 		})
 		.AddJwtBearer(options =>
 		{
-			var jwtSettings = configuration.GetSection("JwtSettings").Get<JwtSettings>();
+			var jwtSettings = configuration.GetSection("JwtSettings").Get<JwtSettings>()!;
 
 			options.TokenValidationParameters = new TokenValidationParameters()
 			{
-				ValidateIssuer = true,
-				ValidateAudience = true,
-				ValidateLifetime = true,
-				ValidateIssuerSigningKey = true,
-				ValidIssuer = jwtSettings.Issuer,
-				ValidAudience = jwtSettings.Audience,
-				ValidAlgorithms = new string[] { SecurityAlgorithms.HmacSha512Signature }.AsEnumerable(),
-				IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey))
+				ValidateIssuer				= true,
+				ValidateAudience			= true,
+				ValidateLifetime			= true,
+				ValidateIssuerSigningKey	= true,
+				ValidIssuer					= jwtSettings.Issuer,
+				ValidAudience				= jwtSettings.Audience,
+				ValidAlgorithms				= new string[] { SecurityAlgorithms.HmacSha512Signature }.AsEnumerable(),
+				IssuerSigningKey			= new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey))
 			};
 		});
 

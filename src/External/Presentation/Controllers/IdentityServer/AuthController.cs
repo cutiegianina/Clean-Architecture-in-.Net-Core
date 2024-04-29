@@ -1,8 +1,8 @@
 ﻿using Application.Common.Enums;
 using Application.Common.Interfaces.Services;
 using Application.Dtos;
-using Application.Models.IdentityServer;
 using Application.Users.Queries;
+using Domain.Constants;
 using IdentityServer.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -26,12 +26,31 @@ public class AuthController : ControllerBase
 
         if (response.UserSignInStatus == SignInStatus.Granted)
         {
-            Dictionary<string, object> payloads = new();
-            payloads.Add("UserId", "asdf");
-            var token = _jwtTokenService.CreateJwtAccessToken(payloads);
+			Dictionary<string, object> payloads = new()
+			{
+				{ JwtTokenClaims.UserId, response.User.Id }
+			};
+			var token = _jwtTokenService.CreateJwtAccessToken(payloads);
 
-			return Ok(token);
+            response.Token = token;
         }
         return Ok(response);
     }
+
+/*    private void SetJwtAccessTokenCookie(JwtToken token)
+    {
+        CookieOptions jwtTokenCookieOptions = new();
+
+        if (token is not null)
+            jwtTokenCookieOptions.Expires = token.Expires;
+        else
+            jwtTokenCookieOptions.Expires = DateTime.UtcNow.AddMinutes(10);
+
+
+        jwtTokenCookieOptions.HttpOnly = true;
+        jwtTokenCookieOptions.Path = "/";
+        jwtTokenCookieOptions.Secure = true;
+
+        Response.Cookies.Append("JWT", token.Token, jwtTokenCookieOptions);
+    }*/
 }

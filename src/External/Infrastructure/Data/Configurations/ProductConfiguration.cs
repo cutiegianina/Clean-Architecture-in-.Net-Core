@@ -34,5 +34,11 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
 			.HasOne(p => p.Category)
 			.WithMany()
 			.HasForeignKey(p => p.CategoryId);
+
+		builder
+			.Property(p => p.UserId)
+			.HasConversion(
+				id => id.Value,
+				value => new UserId(value));
 	}
 }

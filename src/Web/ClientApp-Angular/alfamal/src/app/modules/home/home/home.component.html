@@ -1,2 +1,6 @@
 <p>home works!</p>
+@for (product of products; track product) {
+    <div>{{ product | json}} </div>
+}
+<button type="button" class="btn btn-primary" (click)="getProducts()">Fetch Products</button>
 <button type="submit" class="btn btn-secondary" (click)="logout()">Sign out</button>

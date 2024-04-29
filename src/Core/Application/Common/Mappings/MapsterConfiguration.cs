@@ -11,10 +11,12 @@ public static class MapsterConfiguration
 	{
 		TypeAdapterConfig<Product, ProductDto>.NewConfig()
 			.Map(dest => dest.Id, src => src.Id.Value)
+			.Map(des => des.UserId, src => src.UserId.Value)
 			.Map(dest => dest.CategoryId, src => src.CategoryId.Value);
 
 		TypeAdapterConfig<ProductDto, Product>.NewConfig()
 			.Map(dest => dest.Id, src => src.Id)
+			.Map(des => des.UserId, src => src.UserId)
 			.Map(dest => dest.CategoryId, src => new CategoryId(src.CategoryId));
 
 		TypeAdapterConfig<Category, CategoryDto>.NewConfig()

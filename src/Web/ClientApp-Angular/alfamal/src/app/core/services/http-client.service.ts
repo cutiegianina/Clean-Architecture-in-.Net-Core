@@ -7,7 +7,7 @@ import { Observable, catchError, throwError } from 'rxjs';
 })
 export class HttpClientService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   private readonly baseURL: string = 'https://localhost:44311';
 
@@ -22,6 +22,9 @@ export class HttpClientService {
   }
 
   getDataById(url: string, id: string): Observable<any> {
+    // let headers = new HttpHeaders();
+    // let token = localStorage.getItem('jwtToken');
+    // headers = headers.append('Authorization', `Bearer ${token}`);
     return this.http.get(`${this.baseURL}/${url}/${id}`)
       .pipe(
         catchError(error => {

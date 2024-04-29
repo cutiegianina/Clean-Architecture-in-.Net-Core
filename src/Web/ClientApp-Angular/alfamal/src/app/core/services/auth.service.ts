@@ -18,10 +18,14 @@ export class AuthService {
   private signInStatus: boolean = false;
 
   isLoggedIn = ():boolean => this.signInStatus;
-
+  
   login = ():boolean => this.signInStatus = true;
+  
+  logout = ():boolean => {
+    localStorage.removeItem('jwtToken');
+    return this.signInStatus = false;
+  };
 
-  logout = ():boolean => this.signInStatus = false;
   
   registerUser(user: User): Observable<User> {
     let headers = new HttpHeaders();

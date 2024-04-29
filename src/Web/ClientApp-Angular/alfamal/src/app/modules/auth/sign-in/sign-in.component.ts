@@ -1,5 +1,5 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { UserCredential } from '../../../core/models/user-credential';
 import { AuthService } from '../../../core/services/auth.service';
@@ -21,7 +21,9 @@ export class SignInComponent implements OnInit, AfterViewInit {
     private fb: FormBuilder,
     private authService: AuthService,
     public formService: FormService,
-    private router: Router) {console.log('SignInComponent') }
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {}
+    
   loading: boolean = false;
 
   signInForm = this.fb.group({
@@ -44,11 +46,13 @@ export class SignInComponent implements OnInit, AfterViewInit {
     let loggedInSuccessful = res['userSignInStatus'] == 1;
     if (loggedInSuccessful) {
       this.authService.login();
+      localStorage.setItem('jwtToken', res['token']?.token);
     }
     this.isLoggedIn = loggedInSuccessful;
     this.loading = false;
     if (this.authService.isLoggedIn()) {
-      this.router.navigate(['/admin']);
+      const returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/';
+      this.router.navigate([returnUrl]);
     }
   };
 
