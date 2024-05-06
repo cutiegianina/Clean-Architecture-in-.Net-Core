@@ -1,4 +1,4 @@
-// Web API using .Net Core 7 and Clean Architecture.
+// Web API and CRUD with .Net Core and Angular using Clean Architecture on the backend.
 
 
 // EF Core Migration
